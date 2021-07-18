@@ -10,7 +10,7 @@ namespace PermissionParts
 {
     public class PermissionDisplay
     {
-        public PermissionDisplay(string groupName, string name, string description, Permissions permission,
+        private PermissionDisplay(string groupName, string name, string description, Permissions permission,
             string moduleName)
         {
             Permission = permission;

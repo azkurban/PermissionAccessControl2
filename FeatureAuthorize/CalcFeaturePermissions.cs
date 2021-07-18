@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2019 Jon P Smith, GitHub: JonPSmith, web: http://www.thereformedprogrammer.net/
 // Licensed under MIT license. See License.txt in the project root for license information.
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace FeatureAuthorize
         public async Task<string> CalcPermissionsForUserAsync(string userId)
         {
             //This gets all the permissions, with a distinct to remove duplicates
-            var permissionsForUser = (await _context.UserToRoles.Where(x => x.UserId == userId)
+            IEnumerable<Permissions> permissionsForUser = (await _context.UserToRoles.Where(x => x.UserId == userId)
                 .Select(x => x.Role.PermissionsInRole)
                 .ToListAsync())
                 //Because the permissions are packed we have to put these parts of the query after the ToListAsync()
